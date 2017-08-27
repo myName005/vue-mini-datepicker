@@ -1,5 +1,9 @@
 import Vue from 'vue'
+import Datepicker from './Datepicker/Datepicker.vue'
 
 new Vue({
-  el: '#app'
+	el: '#app',
+	components:{
+		'date-picker':Datepicker
+	}
 })
