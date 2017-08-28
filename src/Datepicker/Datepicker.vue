@@ -2,17 +2,21 @@
 <span>
 	<!-- Day input -->
 	<input type="number" min="1" class="day-input"
-		v-model="input.day" :max="numberOfDaysInMonth" >
+		:value="input.day" :max="numberOfDaysInMonth" 
+		@input="onDayInput">
 
 	<!-- Month input -->
-	<select v-model="input.month">
+	<select  :value="input.month" 
+		@input="onMonthInput">
+		
 		<option v-for="(month,key) in config.months"
 			:value="key">{{month}}</option>
 	</select>
 	
 	<!-- Year input -->
-	<input v-model="input.year" 
-		class="year-input" type="number">
+	<input class="year-input" type="number"
+		 :value="input.year" 
+		@input="onYearInput">
 </span>
 </template>
 
@@ -41,15 +45,14 @@
 import config from './config.js'
 
 export default {
-	
 
 
 	data(){return{
 		config,
 		input:{
-			month:0,
-			year:config.year.default,
-			day:1
+			month:(new Date()).getMonth()-1,
+			year:(new Date()).getFullYear(),
+			day:(new Date()).getDate()
 		}
 	}},
 
@@ -72,12 +75,23 @@ export default {
 		},
 		dateString(){
 			return this.input.year+'-'+(this.input.month +1 )+'-'+this.input.day
-		},
-		date(){
-			return new Date(this.dateString);
 		}
 	},
+	methods:{
+		onDayInput(e){
+			this.input.day  = parseInt(e.target.value)
+			this.$emit('input',this.dateString)
+		},
+		onMonthInput(e){
+			this.input.month  = parseInt(e.target.value)
+			this.$emit('input',this.dateString)
+		},
+		onYearInput(e){
+			this.input.year  = parseInt(e.target.value)
+			this.$emit('input',this.dateString)
+		}
 
+	}
 
 
 

@@ -12,10 +12,5 @@ export default {
 		'October',
 		'November',
 		'December'
-	],
-	year:{
-		default:2017,
-		min:1900,
-		max:2100
-	}
+	]
 }
