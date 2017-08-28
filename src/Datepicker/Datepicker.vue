@@ -45,14 +45,24 @@
 import config from './config.js'
 
 export default {
-
+	props:{
+		day:{
+			default:(new Date()).getDate()
+		},
+		month:{
+			default:(new Date()).getMonth()-1
+		},
+		year:{
+			default:(new Date()).getFullYear()
+		}
+	},
 
 	data(){return{
 		config,
 		input:{
-			month:(new Date()).getMonth()-1,
-			year:(new Date()).getFullYear(),
-			day:(new Date()).getDate()
+			month:this.month,
+			year:this.year,
+			day:this.day
 		}
 	}},
 
