@@ -69,6 +69,12 @@ export default {
 			if( month==3 ||month==5 ||month==8 ||month==10)
 				return 30
 			return 31
+		},
+		dateString(){
+			return this.input.year+'-'+(this.input.month +1 )+'-'+this.input.day
+		},
+		date(){
+			return new Date(this.dateString);
 		}
 	},
 
